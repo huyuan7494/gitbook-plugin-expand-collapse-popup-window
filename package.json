@@ -1,0 +1,17 @@
+{
+    "name": "gitbook-plugin-expand-collapse-popup-window",
+    "version": "0.0.1",
+    "description": "Add expand-collapse effect to an area of content.Show a popup window on mouseover",
+    "engines": {
+        "gitbook": ">1.x.x"
+    },
+    "gitbook": {
+        "properties": {
+            "myConfigKey": {
+                "type": "string",
+                "default": "it's the default value",
+                "description": "It defines my awesome config!"
+            }
+        }
+    }
+}
