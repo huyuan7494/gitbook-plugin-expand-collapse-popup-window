@@ -1,8 +1,12 @@
+const exec = require('child_process')
+    .exec;
+
 module.exports = {
 	website: {
         assets: './assets',
         js: [
-            'plugin.js'
+            'plugin.js',
+            'expand-collapse-popup-window.js'
         ],
         css: [
             'plugin.css'
@@ -14,8 +18,71 @@ module.exports = {
         // For all the hooks, this represent the current generator
 
         // This is called before the book is generated
-        "init": function() {
-            
+        "init": function() 
+        {
+            var fs = require('fs');
+            var path = require('path');
+            //Use relative directory.
+            var filePath = './js/';
+            copy_js(filePath);
+
+            function copy_js(filePath)
+            {
+                //Return file list
+                fs.readdir(filePath, function(err, files)
+                {
+                    if (err)
+                    {
+                        console.warn(err)
+                    }
+                    else
+                    {
+                        //Traverse files in file list.  
+                        files.forEach(function(filename)
+                        {
+                            var filedir = path.join(filePath, filename);
+                            var filePath_new = path.join('./node_modules/gitbook-plugin-expand-collapse-popup-window/assets/', filename);
+                            //Return fs.Stats object  
+                            fs.stat(filedir, function(eror, stats)
+                            {
+                                if (eror)
+                                {
+                                    console.warn('Get file stats failed');
+                                }
+                                else
+                                {
+                                    var isFile = stats.isFile();
+                                    var isDir = stats.isDirectory();
+                                    if (isFile)
+                                    {
+                                        //var extension = path.extname(filename);
+                                        //if (".js" == extension.toLowerCase())
+                                        if("expand-collapse-popup-window.js" == filename)
+                                        {
+                                            //var cmd = 'mkdir -p ' + filePath_new;
+                                            //cmd = cmd + ';\\cp -f ' + filedir + ' ' + filePath_new;
+                                            var cmd = '\\cp -f ' + filedir + ' ' + filePath_new;
+                                            //console.log(cmd);
+                                            exec(cmd, function(error, stdout, stderr)
+                                            {
+                                                if (error)
+                                                {
+                                                    console.log(error);
+                                                    return;
+                                                }
+                                            })
+                                        }
+                                    }
+                                    /*if (isDir && ("_book" != filename))
+                                    {
+                                        copy_pdf(filedir);
+                                    }*/
+                                }
+                            })
+                        });
+                    }
+                });
+            }
         },
 
         // This is called after the book generation

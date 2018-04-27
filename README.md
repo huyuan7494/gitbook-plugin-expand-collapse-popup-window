@@ -8,6 +8,7 @@
 `{{ "head text" | exp_pop(level,"JS_var","popup text") }}`    
 `content to be expand-collapse`  
 `{{ ""|exp_pop_end }}`  
+>Note:Your javascript var should define in `your_gitbook_dir/js/expand-collapse-popup-window.js`
 
 ### parameters:
 - `head text` : String to add effect
