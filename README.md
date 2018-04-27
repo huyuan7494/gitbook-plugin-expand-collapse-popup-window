@@ -1,7 +1,7 @@
 # Add expand-collapse effect to an area of content.Show a popup window on mouseover
 
 ## Preview:  
-![这是图片](screenshot/Comprehensive.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Comprehensive.gif)
 
 ## Usage:
 > You have to add the css  and javascript file named `css.css` and `js.js` to you own project to use this plugin.
@@ -39,7 +39,7 @@ Ryan<br>
 {{ ""|exp_pop_end }}
 ```
 **Preview:**  
-![](screenshot/Expand_collapse.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Expand_collapse.gif)
 
 - Nesting expand_collapse content
 ```html
@@ -65,7 +65,7 @@ Ryan<br>
 {{ ""|exp_pop_end }}
 ```
 **Preview:**  
-![](screenshot/Nesting_expand_collapse.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Nesting_expand_collapse.gif)
 
 - Customize content  
 ```html
@@ -77,14 +77,14 @@ Like this \r\n see, no use.";
 {{ "Click here" | exp_pop(0,"my_text",0) }}
 ```
 **Preview:**  
-![](screenshot/Customize_content.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Customize_content.gif)
 
 - Popup window
 ```html
 {{ "Move cursor over here." | exp_pop(0,0,"This is a popup window on mouseover.") }}
 ```
 **Preview:**  
-![](screenshot/Popup_window.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Popup_window.gif)
 
 - Comprehensive example
 ```html
@@ -110,4 +110,4 @@ Like this \r\n see, no use.";
 {{ ""|exp_pop_end }}
 ```
 **Preview**  
-![](screenshot/Comprehensive.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Comprehensive.gif)
