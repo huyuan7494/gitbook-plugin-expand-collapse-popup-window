@@ -4,15 +4,15 @@
 ![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Comprehensive.gif)
 
 ## Usage:
-> You have to add the css  and javascript file named `css.css` and `js.js` to you own project to use this plugin.
-> Or copy the code to you file.
->There for you can modify the css style or javascript function to customize the view.
-
 ```
 {{ "head text" | exp_pop(level,"JS_var","popup text") }}  
 content to be expand-collapse  
 [{{ ""|exp_pop_end }}]  
 ```
+***Note:You have to add the css  and javascript files named `css.css` and `js.js` in dir `your_gitbook_dir/node_modules/gitbook-plugin-expand-collapse-popup-window/`to you own project to use this plugin.  
+Or copy the code to you own css and JS file.  
+There for you can modify the css style or javascript function to customize the view.***
+
 ### parameters:
 - `head text` : String to add effect
 - `level` : 
@@ -84,7 +84,7 @@ Like this \r\n see, no use.";
 {{ "Move cursor over here." | exp_pop(0,0,"This is a popup window on mouseover.") }}
 ```
 **Preview:**  
-![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Popup_window.gif)
+![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/popup_window.gif)
 
 - Comprehensive example
 ```html
