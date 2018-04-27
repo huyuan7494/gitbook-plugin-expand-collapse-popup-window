@@ -4,14 +4,10 @@
 ![](https://github.com/huyuan7494/gitbook-plugin-expand-collapse-popup-window/raw/master/screenshot/Comprehensive.gif)
 
 ## Usage:
-```
-{{ "head text" | exp_pop(level,"JS_var","popup text") }}  
-content to be expand-collapse  
-[{{ ""|exp_pop_end }}]  
-```
-***Note:You have to add the css  and javascript files named `css.css` and `js.js` in dir `your_gitbook_dir/node_modules/gitbook-plugin-expand-collapse-popup-window/`to you own project to use this plugin.  
-Or copy the code to you own css and JS file.  
-There for you can modify the css style or javascript function to customize the view.***
+
+`{{ "head text" | exp_pop(level,"JS_var","popup text") }}`    
+`content to be expand-collapse`  
+`{{ ""|exp_pop_end }}`  
 
 ### parameters:
 - `head text` : String to add effect
@@ -21,7 +17,7 @@ There for you can modify the css style or javascript function to customize the v
     end with `{{ ""|exp_pop_end }}`.The larger level ,the lighter of the font color of `head text`
 - `JS_var` : A javascript string var to be add into the html/markdown to be expand-collapse. 
 If set with `0`, there will be no content to be add.
-- 'popup text' : Text to show in a popup window onmouseover
+- `popup text` : Text to show in a popup window onmouseover
 
 ## Examples:
 - Expand_collapse content

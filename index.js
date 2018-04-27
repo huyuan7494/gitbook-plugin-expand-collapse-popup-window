@@ -1,7 +1,14 @@
-const exec = require('child_process')
-    .exec;
-
 module.exports = {
+	website: {
+        assets: './assets',
+        js: [
+            'plugin.js'
+        ],
+        css: [
+            'plugin.css'
+        ]
+    },
+
     hooks:
     {
         // For all the hooks, this represent the current generator
@@ -19,6 +26,7 @@ module.exports = {
         //     return page;
         // }
     },
+
     filters: {
         exp_pop: function(head_text,level,content_text,popup_text,kwargs) {
             /* 对于可展开列表项，输出格式如下：
@@ -39,6 +47,7 @@ module.exports = {
             var font_size;
             var id = "id_" + guid();
             var id_head = "head_" + id;
+            var id_single = "single" + id;
             if(level != 0)
             {
                 head_text = "►" + head_text;
@@ -97,7 +106,8 @@ module.exports = {
 
             if(level == 0 && content_text != 0)// 单项详情折叠插件展开后的内容设定
             {
-                output = output + '<div class="list_single"><script>document.write(' + content_text + ')</script></div></div>';
+                output = output + '<div class="list_single" id="' + id_single + '"><script>document.getElementById("' + id_single + '").innerHTML = ' + content_text + '</script></div></div>';
+            
             }
             //output = output + '</div>';
             //if (kwargs.man) name = "Mr" + name;
