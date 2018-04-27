@@ -118,7 +118,7 @@ module.exports = {
             if(level != 0)
             {
                 head_text = "►" + head_text;
-                //font_size = "14px";
+                font_size = "14px";
             }
             if(level == 1) 
                 font_color = "rgb(46,117,244)";
@@ -131,7 +131,7 @@ module.exports = {
             else if(level == 5) 
                 font_color = "rgb(56,197,160)";
             else
-                {font_color = "#333";}
+                {font_color = "#444";}
 
             var output = '<div style="display:inline">';
             output = output + '<b><a id="' + id_head + '"'; 
@@ -144,6 +144,10 @@ module.exports = {
             if(level != 0 || content_text != 0)   // 长折叠插件、或单项详情折叠插件动作设定
             {
                 output = output + ' onclick=\'expand_collapse("' +id +'","' + id_head + '")\'' ;
+                if(level == 0)
+                {
+                    font_color = "rgb(56,167,200)";
+                }
             }
 
             // 折叠插件字体大小，缩进距离，颜色，内容设定
