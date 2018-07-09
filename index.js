@@ -26,6 +26,51 @@ module.exports = {
             var filePath = './js/';
             copy_js(filePath);
 
+            function copyFile(source, target, cb) {
+                // console.log("CopyFile", source, target);
+                var ensureDirectoryExistence = function (filePath) {
+                    var dirname = path.dirname(filePath);
+                    if (fs.existsSync(dirname)) {
+                        return true;
+                    }
+                    ensureDirectoryExistence(dirname);
+                    fs.mkdirSync(dirname);
+                }
+                ensureDirectoryExistence(target);
+            
+                var cbCalled = false;
+                var rd = fs.createReadStream(source);
+                rd.on("error", function (err) {
+                    done(err);
+                });
+                var wr = fs.createWriteStream(target);
+                wr.on("error", function (err) {
+                    done(err);
+                });
+                wr.on("close", function (ex) {
+                    done();
+                });
+                rd.pipe(wr);
+                function done(err) {
+                    if (!cbCalled) {
+                        cb(err);
+                        cbCalled = true;
+                    }
+                }
+            }
+            
+            function copyFilePromise(source, target) {
+                return new Promise(function (accept, reject) {
+                    copyFile(source, target, function (data) {
+                        if (data === undefined) {
+                            accept();
+                        } else {
+                            reject(data);
+                        }
+                    });
+                });
+            }
+
             function copy_js(filePath)
             {
                 //Return file list
@@ -59,18 +104,15 @@ module.exports = {
                                         //if (".js" == extension.toLowerCase())
                                         if("expand-collapse-popup-window.js" == filename)
                                         {
-                                            //var cmd = 'mkdir -p ' + filePath_new;
-                                            //cmd = cmd + ';\\cp -f ' + filedir + ' ' + filePath_new;
-                                            var cmd = '\\cp -f ' + filedir + ' ' + filePath_new;
-                                            //console.log(cmd);
-                                            exec(cmd, function(error, stdout, stderr)
-                                            {
-                                                if (error)
-                                                {
-                                                    console.log(error);
-                                                    return;
-                                                }
-                                            })
+                                            // if(false == fs.existsSync(filePath_new)){
+                                            //     fs.mkdir(filePath_new, (err) => {
+                                            //         if(err && err!=-17){console.log(err);return;}
+                                            //         // console.log('目录创建成功!');
+                                            //     });
+                                            // }
+
+                                            copyFilePromise(filedir,filePath_new);
+
                                         }
                                     }
                                     /*if (isDir && ("_book" != filename))
@@ -172,12 +214,12 @@ module.exports = {
             }
             else
             {
-                output = output + '<br></div>';// 为只有popup windows的项添加换行效果
+                output = output + '<br></div>';// 为只有popup windows或什么特效都没有的项添加换行效果
             }
 
             if(level == 0 && content_text != 0)// 单项详情折叠插件展开后的内容设定
             {
-                output = output + '<div class="list_single" id="' + id_single + '"><script>document.getElementById("' + id_single + '").innerHTML = ' + content_text + '</script></div></div>';
+                output = output + '<div class="list_single" id="' + id_single + '"><script>document.getElementById("' + id_single + '").innerHTML = ' + content_text + '</script></div></div></div>';
             
             }
             //output = output + '</div>';
